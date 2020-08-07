@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    </head>
+    <body id="advancedSearch">
+    	<nav>
+    		<ul>
+    			<li><img src="googleImage.png"/></li>
+    			<li><a href="index.html">Back to Search</a></li>
+    		</ul>
+    	</nav>
+    	<h3 class="heading__advanced">Advanced Search</h3>
+
+        <form name="searchForm" action="https://google.com/search">
+        	<div class="container__advanced">
+        		<p>Find pages with...</p>
+	        	<div class="inputWrapper__advanced">
+	        		<!-- <span class="icon material-icons">search</span> -->
+	        		<p>all these words:</p>
+	            	<input id="searchString" class="searchField__advanced" type="text" name="as_q">
+	            </div>
+	            <div class="inputWrapper__advanced">
+	            	<p>this exact word or phrase:</p>
+	            	<input id="exactString" class="searchField__advanced" type="text" name="as_epq">
+	            </div>
+	            <div class="inputWrapper__advanced">
+	            	<p>any of these words:</p>
+	            	<input id="anyString" class="searchField__advanced" type="text" name="as_oq">
+	            </div>
+	            <div class="inputWrapper__advanced">
+	            	<p>none of these words:</p>
+	            	<input id="noneString" class="searchField__advanced" type="text" name="as_eq">
+	            </div>
+       			<input class="button__primary" class="button__advanced" type="submit" value="Advanced Search">
+           	</div>
+        </form>
+    </body>
+</html>
+
+<script>
+	const apiKey = 'AIzaSyD1I06zRFrQ6TGlt1yc62M74bMdtAt8quo';
+	const headers = new Headers({
+		'Content-Type': 'application/json',
+		'Accept': 'application/json',
+		'Content-Type': 'application/x-www-form-urlencoded',
+	});
+
+
+	// function that returns the 1st entry of items returned from the search request
+	// ... handles errors or empty results by returning '#'
+	const getGoogleSearchDataLuckyLink = async (searchParam) => {
+		try {
+			const result = await fetch(`https://www.googleapis.com/customsearch/v1?q=${searchParam}&key=${apiKey}&cx=017901247231445677654:zwad8gw42fj&searchType=image`, {
+				method: 'get',
+				mode: 'cors',
+				headers: headers,
+			});
+			if (result.ok ) {
+				const data = await result.json();
+				if (data.hasOwnProperty('items')) {
+					return data.items[0].link;
+				} else {
+					alert('nothing entered or error');
+					return '#';
+				}
+			}
+		} catch(e) {
+			alert('nothing entered or error');
+			return '#';
+		}
+	}
+
+
+</script>
