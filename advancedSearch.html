@@ -40,39 +40,3 @@
         </form>
     </body>
 </html>
-
-<script>
-	const apiKey = 'AIzaSyD1I06zRFrQ6TGlt1yc62M74bMdtAt8quo';
-	const headers = new Headers({
-		'Content-Type': 'application/json',
-		'Accept': 'application/json',
-		'Content-Type': 'application/x-www-form-urlencoded',
-	});
-
-
-	// function that returns the 1st entry of items returned from the search request
-	// ... handles errors or empty results by returning '#'
-	const getGoogleSearchDataLuckyLink = async (searchParam) => {
-		try {
-			const result = await fetch(`https://www.googleapis.com/customsearch/v1?q=${searchParam}&key=${apiKey}&cx=017901247231445677654:zwad8gw42fj&searchType=image`, {
-				method: 'get',
-				mode: 'cors',
-				headers: headers,
-			});
-			if (result.ok ) {
-				const data = await result.json();
-				if (data.hasOwnProperty('items')) {
-					return data.items[0].link;
-				} else {
-					alert('nothing entered or error');
-					return '#';
-				}
-			}
-		} catch(e) {
-			alert('nothing entered or error');
-			return '#';
-		}
-	}
-
-
-</script>
