@@ -2,7 +2,9 @@
 
 Google search, google image search, and an advanced search option, including I'm feeling lucky.
 
-Technologies:
+Demo video: https://youtu.be/05eHUQ03eMA
+
+## Technologies:
 - HTML
 - CSS
 - Javascript
